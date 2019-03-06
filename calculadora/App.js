@@ -28,16 +28,48 @@ export default class App extends React.Component {
 
   setOperation = operation => {
     if(operation == '+'){
-      secondarie_value = parseInt(digit) + parseInt(secondarie_value)
-      digit = ""
-      digit_str = digit_str + "+"
-      this.setState({displayValue: digit_str})
-    }
-    if(operation == '='){
-      secondarie_value = parseInt(digit) + parseInt(secondarie_value)
-      this.setState({displayValue: secondarie_value.toString()})
+      this.execSom()
+    }else if(operation == '-'){
+      this.execSub()
+    }else if(operation == '='){
+      this.exexcEqual()
     }
   }
+
+  execSom = () => {
+    secondarie_value = parseFloat(digit) + parseFloat(secondarie_value)
+    digit = ""
+    digit_str = digit_str + "+"
+    operation_selected = "+"
+    this.setState({displayValue: digit_str})
+  }
+
+  execSub = () => {
+    if(secondarie_value != "0"){
+      secondarie_value = parseFloat(secondarie_value) - parseFloat(digit) 
+    }else{
+      secondarie_value = parseFloat(digit) 
+    }
+    digit = ""
+    digit_str = digit_str + "-"
+    operation_selected = "-"
+    this.setState({displayValue: digit_str})
+  }
+
+  exexcEqual = () => {
+    if(operation_selected == "+"){
+      secondarie_value = parseFloat(digit) + parseFloat(secondarie_value)
+    }else if(operation_selected == "-"){
+      secondarie_value = parseFloat(secondarie_value) - parseFloat(digit)
+    }else{
+      secondarie_value = "error"
+    }
+    digit = "0"
+    digit_str = secondarie_value
+    operation_selected = ""
+    this.setState({displayValue: secondarie_value.toString()})
+  }
+
 
   render() {
     return (
