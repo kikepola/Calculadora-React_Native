@@ -12,10 +12,11 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').width/4,
         width: Dimensions.get('window').width/4,
         padding: 20,
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#262626',
         textAlign: 'center',
         borderWidth: 1,
-        borderColor: '#888',
+        borderColor: '#0d0d0d',
+        color: '#fff',
     },
     operationButton: {
         color: '#fff',

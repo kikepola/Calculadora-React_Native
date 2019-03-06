@@ -3,21 +3,40 @@ import { StyleSheet, Text, View } from 'react-native';
 import Button from './src/components/Button'
 import Display from './src/components/Display'
 
+let digit = "0"
+let digit_str = ""
+let secondarie_value = "0"
+let operation_selected = ""
+
 export default class App extends React.Component {
   state ={
     displayValue: '0'
   }
 
   addDigit = n => {
-    this.setState({displayValue: n})
+    digit = digit + n
+    digit_str = digit_str + n
+    this.setState({displayValue: digit_str })
   }
 
   clearMemory = () => {
+    digit = "0"
+    secondarie_value = "0"
+    digit_str = ""
     this.setState({displayValue: '0'})
   }
 
   setOperation = operation => {
-
+    if(operation == '+'){
+      secondarie_value = parseInt(digit) + parseInt(secondarie_value)
+      digit = ""
+      digit_str = digit_str + "+"
+      this.setState({displayValue: digit_str})
+    }
+    if(operation == '='){
+      secondarie_value = parseInt(digit) + parseInt(secondarie_value)
+      this.setState({displayValue: secondarie_value.toString()})
+    }
   }
 
   render() {
