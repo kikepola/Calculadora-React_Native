@@ -31,6 +31,10 @@ export default class App extends React.Component {
       this.execSom()
     }else if(operation == '-'){
       this.execSub()
+    }else if(operation == '*'){
+      this.execMult()
+    }else if(operation == '/'){
+      this.execDiv()
     }else if(operation == '='){
       this.exexcEqual()
     }
@@ -56,11 +60,43 @@ export default class App extends React.Component {
     this.setState({displayValue: digit_str})
   }
 
+  execMult = () => {
+    if(parseFloat(secondarie_value) < parseFloat(digit)){
+      secondarie_value = parseFloat(digit)
+    }else if(parseFloat(secondarie_value) > parseFloat(digit)){
+      secondarie_value = parseFloat(secondarie_value)
+    }else{
+      secondarie_value = parseFloat(secondarie_value) * parseFloat(digit) 
+    }
+    digit = ""
+    digit_str = digit_str + "*"
+    operation_selected = "*"
+    this.setState({displayValue: digit_str})
+  }
+
+  execDiv = () => {
+    if(parseFloat(secondarie_value) < parseFloat(digit)){
+      secondarie_value = parseFloat(digit)
+    }else if(parseFloat(secondarie_value) > parseFloat(digit)){
+      secondarie_value = parseFloat(secondarie_value)
+    }else{
+      secondarie_value = parseFloat(secondarie_value) / parseFloat(digit) 
+    }
+    digit = ""
+    digit_str = digit_str + "/"
+    operation_selected = "/"
+    this.setState({displayValue: digit_str})
+  }
+
   exexcEqual = () => {
     if(operation_selected == "+"){
       secondarie_value = parseFloat(digit) + parseFloat(secondarie_value)
     }else if(operation_selected == "-"){
       secondarie_value = parseFloat(secondarie_value) - parseFloat(digit)
+    }else if(operation_selected == "*"){
+      secondarie_value = parseFloat(secondarie_value) * parseFloat(digit)
+    }else if(operation_selected == "/"){
+      secondarie_value = parseFloat(secondarie_value) / parseFloat(digit)
     }else{
       secondarie_value = "error"
     }
