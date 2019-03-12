@@ -1,26 +1,40 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Button from './src/Button';
-
+import params from './src/params'
+import Field from './src/components/Field'
 
 export default class App extends React.Component {
+
   render() {
     return (
       <View style={styles.container}>
-        <View style={styles.buttons}>
-          <Button label="Start"/ onClick={()}>
-        </View>
+        <Text style={styles.welcome}>Starting Mines</Text> 
+        <Text style={styles.instructions}>Grid size
+          {params.getColumnsAmount()}x{params.getColumnsAmount()}</Text>
+        <Field />
+        <Field opened/>
+        <Field opened nearMines={1} />
+        <Field opened nearMines={2} />
+        <Field opened nearMines={5} />
+        <Field opened nearMines={6} />
+        <Field mined />
+        <Field mined opened />
+        <Field mined opened exploded/>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
   },
-  buttons:{
-    flexDirection: 'row',
-    flexWrap:'wrap',
-  }
+  welcome: {
+  fontSize: 20,
+  textAlign: 'center',
+  },
+
 });
